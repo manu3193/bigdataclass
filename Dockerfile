@@ -1,15 +1,17 @@
-FROM openjdk:14-alpine
+FROM alpine:latest
 
+RUN apk update && \
+    apk add openjdk17-jdk
+
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm
 ENV SPARK_HOME=/usr/lib/python3.7/site-packages/pyspark
 
 RUN apk add bash && \
   apk add nano && \
   apk add postgresql-client && \
-  apk add python3 && \
-  pip3 install --upgrade pip && \
-  pip3 install pyspark && \
-  pip3 install pytest && \
-  ln /usr/bin/python3.7 /usr/bin/python
+  apk add --update  python3 py3-pip  && \
+  pip3 install pyspark  --break-system-packages --root-user-action=ignore && \
+  pip3 install pytest  --break-system-packages --root-user-action=ignore
 
 WORKDIR /src
 

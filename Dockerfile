@@ -4,7 +4,7 @@ RUN apk update && \
     apk add openjdk17-jdk
 
 ENV JAVA_HOME=/usr/lib/jvm/default-jvm
-ENV SPARK_HOME=/usr/lib/python3.7/site-packages/pyspark
+ENV SPARK_HOME=/usr/lib/python3.12/site-packages/pyspark
 
 RUN apk add bash && \
   apk add nano && \
